@@ -1,3 +1,37 @@
 theme: jekyll-theme-minimal
-title: Nikkibests homepage
-description: Bookmark this to keep an eye on my project updates!
+title: Nikkibest's Portfolio
+description: Personal résumé and project showcases
+
+# Author information
+author:
+  name: Nikkibest
+  email: your.email@example.com
+  github: nikkibest
+
+# SEO and social
+url: "https://nikkibest.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: CV
+    url: /cv.html
+  - title: Projects
+    url: /projects.html
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CLAUDE.md
+  - vendor/
+  - .bundle/
