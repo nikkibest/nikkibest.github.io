@@ -9,7 +9,35 @@ Here are some of the projects I've worked on. Click on each to learn more.
 
 ---
 
-## [Project Name 1]
+## WebAssembly & Interactive Demos
+
+<div class="project-grid">
+  <div class="project-card">
+    <a href="{{ site.baseurl }}/projects/ball-balancer.html" class="project-link">
+      <div class="project-thumbnail">
+        <img src="{{ site.baseurl }}/assets/images/ball-balancer-thumb.png" alt="Ball Balancer Game">
+        <div class="project-overlay">
+          <span class="play-icon">▶ Play Demo</span>
+        </div>
+      </div>
+      <div class="project-details">
+        <h3>Ball Balancer</h3>
+        <p class="project-tech">C++ • WebAssembly • OpenGL • ImGui</p>
+        <p class="project-description">
+          A physics-based ball balancing simulation with real-time controls. Built with modern C++ and compiled to WebAssembly for in-browser play.
+        </p>
+      </div>
+    </a>
+  </div>
+
+  <!-- Add more WebAssembly projects here following the same pattern -->
+</div>
+
+---
+
+## Other Projects
+
+### [Project Name 1]
 
 **Technologies:** [e.g., Python, Django, PostgreSQL]
 

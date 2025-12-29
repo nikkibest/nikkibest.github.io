@@ -1,0 +1,85 @@
+---
+layout: fullscreen
+title: Ball Balancer
+github_url: "https://github.com/nikkibest/ball-balancer"
+---
+
+<div class="game-container">
+  <div id="status">Loading...</div>
+  <div id="spinner" class="spinner"></div>
+  <canvas id="canvas" width="1024" height="768"></canvas>
+</div>
+
+<div class="info-section">
+  <h2>About This Game</h2>
+  <p>A physics-based ball balancing simulation built with modern C++ and compiled to WebAssembly using Emscripten. This demonstrates running native C++ applications directly in your browser with near-native performance.</p>
+
+  <h2>How to Play</h2>
+  <ul>
+    <li><strong>Mouse Movement:</strong> Control the platform tilt</li>
+    <li><strong>Click and Drag:</strong> Adjust platform angle for precise control</li>
+    <li><strong>ImGui Controls:</strong> Use the on-screen GUI to adjust physics parameters in real-time</li>
+  </ul>
+
+  <h2>Technical Stack</h2>
+  <p><strong>Technologies:</strong> C++, WebAssembly, OpenGL/WebGL, ImGui, Physics Simulation</p>
+</div>
+
+<script>
+  var statusElement = document.getElementById('status');
+  var spinnerElement = document.getElementById('spinner');
+  var canvasElement = document.getElementById('canvas');
+
+  var Module = {
+    preRun: [],
+    postRun: [],
+
+    print: function(text) {
+      console.log('[WASM] ' + text);
+    },
+
+    printErr: function(text) {
+      console.error('[WASM Error] ' + text);
+    },
+
+    canvas: canvasElement,
+
+    locateFile: function(path, prefix) {
+      return '/projects/ball-balancer/' + path;
+    },
+
+    setStatus: function(text) {
+      if (!text) {
+        spinnerElement.style.display = 'none';
+        statusElement.innerHTML = 'Ready!';
+        return;
+      }
+
+      console.log('[Status] ' + text);
+      statusElement.innerHTML = text;
+    },
+
+    totalDependencies: 0,
+
+    monitorRunDependencies: function(left) {
+      this.totalDependencies = Math.max(this.totalDependencies, left);
+      Module.setStatus(left ?
+        'Preparing... (' + (this.totalDependencies - left) + '/' + this.totalDependencies + ')' :
+        'All downloads complete.');
+    },
+
+    onRuntimeInitialized: function() {
+      console.log('[WASM] Runtime initialized');
+      Module.setStatus('');
+    }
+  };
+
+  Module.setStatus('Downloading...');
+
+  window.onerror = function(event) {
+    Module.setStatus('Error: ' + event);
+    console.error('Error:', event);
+  };
+</script>
+
+<script async src="/projects/ball-balancer/ball_balancer.js"></script>
