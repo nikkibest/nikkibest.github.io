@@ -19,8 +19,8 @@ Here is something about me
 ## Contact
 
 - Email: [niklas-s@hotmail.com]
-- GitHub: [github.com/yourusername](https://github.com/nikkibest)
-- LinkedIn: [linkedin.com/in/yourprofile](https://www.linkedin.com/in/niklas-simonsen2/)
+- GitHub: [github.com/nikkibest](https://github.com/nikkibest)
+- LinkedIn: [linkedin.com/in/niklas-simonsen2](https://www.linkedin.com/in/niklas-simonsen2/)
 
 ---
 

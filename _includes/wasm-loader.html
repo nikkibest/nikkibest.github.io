@@ -1,0 +1,129 @@
+<!-- WebAssembly Loading Overlay -->
+<!-- This component provides visual feedback while WASM module loads -->
+<div id="wasm-loading" class="loading-overlay">
+  <div class="loading-content">
+    <div class="spinner"></div>
+    <p class="loading-text">Loading WebAssembly module...</p>
+    <div class="progress-container">
+      <progress id="wasm-progress" max="100" value="0"></progress>
+      <span id="progress-text">0%</span>
+    </div>
+    <p class="loading-hint">This may take a moment on first load</p>
+  </div>
+</div>
+
+<!-- WebAssembly Module Configuration -->
+<script>
+  // Global Module object for Emscripten
+  // This configures how Emscripten handles initialization and status updates
+  var Module = {
+    preRun: [],
+    postRun: [],
+
+    // Redirect console output to browser console
+    print: function(text) {
+      console.log('[WASM] ' + text);
+    },
+
+    printErr: function(text) {
+      console.error('[WASM Error] ' + text);
+    },
+
+    // Help Emscripten locate files in the correct directory
+    locateFile: function(path, prefix) {
+      // Get the directory where the current HTML page is located
+      var currentDir = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+      console.log('[WASM] Locating file: ' + path + ' in ' + currentDir);
+      return currentDir + path;
+    },
+
+    // Canvas element for rendering
+    canvas: (function() {
+      var canvas = document.getElementById('canvas');
+
+      // Prevent browser from handling keyboard events when canvas is focused
+      canvas.addEventListener("webglcontextlost", function(e) {
+        alert('WebGL context lost. You will need to reload the page.');
+        e.preventDefault();
+      }, false);
+
+      return canvas;
+    })(),
+
+    // Status callback - called during loading and initialization
+    setStatus: function(text) {
+      console.log('[WASM Status] ' + text);
+
+      // Parse download progress: "Downloading... (loaded/total)"
+      var progressMatch = text.match(/([^(]+)\((\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)\)/);
+      var loadingDiv = document.getElementById('wasm-loading');
+      var progressBar = document.getElementById('wasm-progress');
+      var progressText = document.getElementById('progress-text');
+
+      if (progressMatch) {
+        // Update progress bar
+        var loaded = parseFloat(progressMatch[2]);
+        var total = parseFloat(progressMatch[3]);
+        var percent = Math.round((loaded / total) * 100);
+
+        if (progressBar) progressBar.value = percent;
+        if (progressText) progressText.textContent = percent + '%';
+      } else if (text === '' || text === 'All downloads complete.') {
+        // Loading complete - hide overlay
+        if (loadingDiv) {
+          loadingDiv.style.opacity = '0';
+          setTimeout(function() {
+            loadingDiv.style.display = 'none';
+          }, 300);
+        }
+
+        // Show canvas
+        var canvasContainer = document.getElementById('canvas-container');
+        if (canvasContainer) {
+          canvasContainer.style.display = 'block';
+        }
+      } else if (text.indexOf('Exception') !== -1 || text.indexOf('Error') !== -1) {
+        // Error occurred
+        if (loadingDiv) {
+          loadingDiv.innerHTML = '<div class="loading-content"><div class="error-icon">⚠</div>' +
+                                  '<p class="error-text">Failed to load WebAssembly module</p>' +
+                                  '<p class="error-details">' + text + '</p>' +
+                                  '<button onclick="location.reload()" class="btn">Reload Page</button></div>';
+        }
+      }
+    },
+
+    // Track runtime dependencies
+    totalDependencies: 0,
+    monitorRunDependencies: function(left) {
+      this.totalDependencies = Math.max(this.totalDependencies, left);
+      var status = left ? 'Preparing... (' + (this.totalDependencies - left) +
+                          '/' + this.totalDependencies + ')' : 'All downloads complete.';
+      Module.setStatus(status);
+    },
+
+    // Called when runtime is ready
+    onRuntimeInitialized: function() {
+      console.log('[WASM] Runtime initialized successfully');
+      Module.setStatus('');
+    }
+  };
+
+  // Set initial status
+  Module.setStatus('Downloading WebAssembly module...');
+
+  // Handle loading errors
+  window.onerror = function(event) {
+    if (event.indexOf && event.indexOf('wasm') !== -1) {
+      Module.setStatus('Error: ' + event);
+    }
+  };
+
+  // Hide canvas initially until WASM loads
+  document.addEventListener('DOMContentLoaded', function() {
+    var canvasContainer = document.getElementById('canvas-container');
+    if (canvasContainer) {
+      canvasContainer.style.display = 'none';
+    }
+  });
+</script>

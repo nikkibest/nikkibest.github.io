@@ -1,0 +1,71 @@
+---
+layout: wasm-project
+title: "My C++ Game"
+canvas_width: 800
+canvas_height: 600
+show_controls: true
+technologies:
+  - "C++17"
+  - "Emscripten"
+  - "WebAssembly"
+  - "HTML5 Canvas"
+github_url: "https://github.com/nikkibest/your-game-repo"
+wasm_js_file: "/projects/my-cpp-game/game.js"
+---
+
+## About This Game
+
+This is a C++ game compiled to WebAssembly using Emscripten. The game runs entirely in your browser with near-native performance.
+
+**Note:** Replace this placeholder content with your actual game description.
+
+## How to Play
+
+- **Arrow Keys / WASD**: Move
+- **Spacebar**: Jump/Action
+- **Mouse Click**: Interact
+- **R**: Restart
+
+## Technical Details
+
+This game was built using modern C++ and compiled to WebAssembly for browser execution. Key features include:
+
+- Real-time rendering using HTML5 Canvas
+- Efficient memory management
+- Cross-platform compatibility
+- Optimized for 60 FPS performance
+
+### Build Process
+
+The game is compiled using Emscripten with the following optimization flags:
+
+```bash
+emcc game.cpp -o game.js \
+  -s WASM=1 \
+  -s USE_SDL=2 \
+  -O3 \
+  -s ALLOW_MEMORY_GROWTH=1 \
+  --preload-file assets
+```
+
+## Performance
+
+- **Target FPS**: 60
+- **WASM Size**: ~XX KB (optimized)
+- **Memory Usage**: ~XX MB
+- **Load Time**: ~X seconds on typical connection
+
+## Browser Compatibility
+
+This game has been tested and works on:
+
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+
+**Note:** Mobile browsers may have limited support depending on the game's requirements.
+
+## Source Code
+
+The complete source code, build instructions, and documentation are available on GitHub. Feel free to explore, learn from, or contribute to the project!

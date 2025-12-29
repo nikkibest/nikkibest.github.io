@@ -1,0 +1,423 @@
+/* ===================================
+   WebAssembly Demo Styling
+   Styles for interactive WASM project pages
+   =================================== */
+
+/* Demo Window Container */
+.demo-window {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Canvas Container */
+#canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+  min-height: 400px;
+  position: relative;
+}
+
+#canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  background: #000;
+  image-rendering: pixelated; /* Preserve pixel art if applicable */
+  image-rendering: crisp-edges;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.loading-content {
+  text-align: center;
+  color: #fff;
+  max-width: 300px;
+}
+
+/* Loading Spinner */
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-left-color: #4CAF50;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 10px 0;
+  color: #fff;
+}
+
+.loading-hint {
+  font-size: 12px;
+  color: #999;
+  margin-top: 10px;
+}
+
+/* Progress Bar */
+.progress-container {
+  margin: 15px 0;
+}
+
+#wasm-progress {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  overflow: hidden;
+}
+
+#wasm-progress::-webkit-progress-bar {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+#wasm-progress::-webkit-progress-value {
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+  border-radius: 3px;
+}
+
+#wasm-progress::-moz-progress-bar {
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+  border-radius: 3px;
+}
+
+#progress-text {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #4CAF50;
+  font-weight: 500;
+}
+
+/* Error States */
+.error-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.error-text {
+  color: #f44336;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.error-details {
+  color: #999;
+  font-size: 12px;
+  margin-bottom: 20px;
+  font-family: monospace;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 4px;
+  word-break: break-all;
+}
+
+/* Controls Panel */
+.controls-panel {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.controls-panel h3 {
+  margin-top: 0;
+  color: #fff;
+  font-size: 16px;
+}
+
+#game-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Project Information Section */
+.project-info {
+  margin-top: 30px;
+}
+
+.project-info h2 {
+  color: #333;
+  border-bottom: 2px solid #4CAF50;
+  padding-bottom: 10px;
+  margin-top: 30px;
+}
+
+.tech-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.tech-list li {
+  background: #f0f0f0;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+/* Project Links */
+.project-links {
+  margin: 25px 0;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.1s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-github {
+  background: #24292e;
+}
+
+.btn-github:hover {
+  background: #1a1e22;
+}
+
+.btn-download {
+  background: #2196F3;
+}
+
+.btn-download:hover {
+  background: #0b7dda;
+}
+
+.back-link {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.back-link a {
+  color: #4CAF50;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+/* ===================================
+   Project Cards (for projects.md)
+   =================================== */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin: 30px 0;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.project-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.project-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.project-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-thumbnail img {
+  transform: scale(1.05);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.play-icon {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.project-details {
+  padding: 20px;
+}
+
+.project-details h3 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.project-tech {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 12px 0;
+  font-weight: 500;
+}
+
+.project-description {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+
+@media (max-width: 768px) {
+  .demo-window {
+    padding: 15px;
+  }
+
+  #canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-links {
+    flex-direction: column;
+  }
+
+  .btn {
+    text-align: center;
+  }
+
+  .loading-content {
+    max-width: 250px;
+  }
+
+  .tech-list {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .demo-window {
+    padding: 10px;
+    margin: 10px -10px; /* Bleed to edges on small screens */
+    border-radius: 0;
+  }
+
+  .project-details h3 {
+    font-size: 18px;
+  }
+
+  .project-thumbnail {
+    height: 180px;
+  }
+}
+
+/* ===================================
+   Print Styles (hide interactive elements)
+   =================================== */
+
+@media print {
+  .demo-window,
+  .controls-panel,
+  .loading-overlay,
+  .project-links {
+    display: none;
+  }
+}
