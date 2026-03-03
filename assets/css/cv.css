@@ -1,0 +1,193 @@
+/* =============================================
+   CV page – modern, readable layout
+   Scoped to .page-cv so only the CV is affected
+   ============================================= */
+
+.page-cv .cv-content {
+  max-width: 42rem;
+  margin-left: 0;
+  line-height: 1.65;
+  color: #333;
+}
+
+/* Headings */
+.page-cv .cv-content h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  margin-bottom: 0.35em;
+  letter-spacing: -0.02em;
+  color: #1a1a1a;
+}
+
+.page-cv .cv-content h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #444;
+  margin-top: 2rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid #2d6a9f;
+}
+
+.page-cv .cv-content h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.4rem;
+  color: #2d6a9f;
+}
+
+.page-cv .cv-content h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.35rem;
+  color: #555;
+}
+
+/* Tagline (first paragraph after h1) */
+.page-cv .cv-content h1 + p {
+  font-size: 0.95rem;
+  color: #2d6a9f;
+  margin-bottom: 0.4rem;
+}
+
+.page-cv .cv-content h1 + p strong {
+  font-weight: 600;
+}
+
+/* Intro line (second paragraph) */
+.page-cv .cv-content h1 + p + p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+  font-style: normal;
+}
+
+.page-cv .cv-content h1 + p + p em {
+  font-style: normal;
+}
+
+/* Contact line */
+.page-cv .cv-content p:has([href^="mailto"]) {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+/* Horizontal rules as subtle dividers */
+.page-cv .cv-content hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 1.75rem 0;
+}
+
+/* Lists */
+.page-cv .cv-content ul {
+  margin: 0.5rem 0 1rem 0;
+  padding-left: 1.35rem;
+}
+
+.page-cv .cv-content li {
+  margin-bottom: 0.35rem;
+}
+
+.page-cv .cv-content li::marker {
+  color: #2d6a9f;
+}
+
+/* Links */
+.page-cv .cv-content a {
+  color: #2d6a9f;
+  text-decoration: none;
+}
+
+.page-cv .cv-content a:hover {
+  text-decoration: underline;
+}
+
+/* Selected projects block */
+.page-cv .cv-content .cv-project-links {
+  margin: 0.75rem 0 1.25rem 0;
+}
+
+.page-cv .cv-content .cv-project-links ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.page-cv .cv-content .cv-project-links li {
+  margin-bottom: 0.75rem;
+}
+
+.page-cv .cv-content .cv-project-links a {
+  display: inline-block;
+  padding: 0.45rem 0.75rem;
+  background: #f0f4f8;
+  border-radius: 6px;
+  border: 1px solid #dde4eb;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.page-cv .cv-content .cv-project-links a:hover {
+  background: #e4ecf4;
+  border-color: #2d6a9f;
+  text-decoration: none;
+}
+
+/* Tables (Languages) */
+.page-cv .cv-content table {
+  width: 100%;
+  max-width: 20rem;
+  border-collapse: collapse;
+  margin: 0.5rem 0 1rem 0;
+  font-size: 0.9rem;
+}
+
+.page-cv .cv-content th,
+.page-cv .cv-content td {
+  text-align: left;
+  padding: 0.4rem 0.75rem 0.4rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.page-cv .cv-content th {
+  font-weight: 600;
+  color: #555;
+}
+
+/* About me & References */
+.page-cv .cv-content h2:has(+ p),
+.page-cv .cv-content h2:has(+ p + p) {
+  border-bottom-color: #ddd;
+}
+
+.page-cv .cv-content p {
+  margin-bottom: 0.75rem;
+}
+
+/* Footer links on CV */
+.page-cv .cv-content p:last-of-type a {
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .page-cv .cv-content {
+    font-size: 0.95rem;
+  }
+
+  .page-cv .cv-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .page-cv .cv-content h2 + ul a[href*="/projects/"] {
+    display: block;
+    text-align: center;
+  }
+}

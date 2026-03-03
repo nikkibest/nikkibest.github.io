@@ -1,0 +1,205 @@
+/* =============================================
+   CV print layout — standalone A4 document
+   No sidebar, no nav, clean PDF output
+   ============================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+@page {
+  size: A4;
+  margin: 14mm 18mm 12mm 18mm;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 9.5pt;
+  color: #1a1a1a;
+  line-height: 1.45;
+}
+
+.cv-doc {
+  max-width: 100%;
+}
+
+/* ---- Name / header ---- */
+h1 {
+  font-size: 20pt;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.1em 0;
+  color: #111;
+}
+
+/* Tagline — bold line directly after h1 */
+h1 + p strong {
+  font-size: 9pt;
+  font-weight: 600;
+  color: #2d6a9f;
+  letter-spacing: 0.02em;
+}
+
+h1 + p {
+  margin: 0 0 0.2em 0;
+}
+
+/* Role / intro line */
+h1 + p + p {
+  font-size: 9pt;
+  color: #444;
+  margin: 0 0 0.3em 0;
+}
+
+h1 + p + p em {
+  font-style: normal;
+}
+
+/* Contact line */
+h1 + p + p + p,
+p:has(a[href^="mailto"]) {
+  font-size: 8.5pt;
+  color: #555;
+  margin: 0 0 0.4em 0;
+}
+
+/* ---- Horizontal rules ---- */
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 0.45em 0;
+}
+
+/* First hr (after contact block) — slightly thicker accent */
+h1 ~ hr:first-of-type {
+  border-top: 2px solid #2d6a9f;
+  margin: 0.4em 0 0.6em 0;
+}
+
+/* ---- Section headings ---- */
+h2 {
+  font-size: 7.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2d6a9f;
+  margin: 0.85em 0 0.35em 0;
+  padding-bottom: 0.15em;
+  border-bottom: 1.5px solid #2d6a9f;
+  page-break-after: avoid;
+}
+
+/* ---- Job / degree headings ---- */
+h3 {
+  font-size: 9.5pt;
+  font-weight: 700;
+  margin: 0.55em 0 0.05em 0;
+  color: #111;
+  page-break-after: avoid;
+}
+
+h4 {
+  font-size: 9pt;
+  font-weight: 600;
+  margin: 0.4em 0 0.05em 0;
+  color: #333;
+  page-break-after: avoid;
+}
+
+/* ---- Date / institution lines (italics after h3) ---- */
+h3 + p,
+h3 + p em {
+  font-size: 8.5pt;
+  color: #666;
+  margin: 0 0 0.2em 0;
+  font-style: italic;
+}
+
+h4 + p strong {
+  font-weight: 600;
+  color: #333;
+}
+
+/* ---- Body paragraphs ---- */
+p {
+  margin: 0 0 0.35em 0;
+  font-size: 9.5pt;
+}
+
+/* ---- Lists ---- */
+ul {
+  margin: 0.15em 0 0.4em 0;
+  padding-left: 1.1em;
+}
+
+li {
+  margin-bottom: 0.2em;
+  font-size: 9.5pt;
+}
+
+li::marker {
+  color: #2d6a9f;
+}
+
+/* ---- Strong / emphasis ---- */
+strong {
+  font-weight: 700;
+  color: #111;
+}
+
+em {
+  font-style: italic;
+  color: #444;
+}
+
+/* ---- Links ---- */
+a {
+  color: #2d6a9f;
+  text-decoration: none;
+}
+
+/* ---- Skills + Languages two-column layout ---- */
+.skills-lang-row {
+  display: flex;
+  gap: 2em;
+  align-items: flex-start;
+  margin-top: 0.2em;
+}
+
+.skills-col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.lang-col {
+  flex: 0 0 auto;
+  width: 10em;
+}
+
+/* ---- Table (languages) ---- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.1em 0 0.4em 0;
+  font-size: 9pt;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.2em 0.75em 0.2em 0;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  font-weight: 600;
+  color: #555;
+}
+
+/* ---- References line — hide the label, keep "Available upon request" ---- */
+/* The last p (Available upon request.) is shown, nothing else needed */
+
+/* ---- Page break hints ---- */
+h2, h3, h4       { page-break-after: avoid; }
+ul, table        { page-break-inside: avoid; }
+.skills-lang-row { page-break-inside: avoid; }
