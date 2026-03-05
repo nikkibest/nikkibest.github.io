@@ -92,6 +92,7 @@ Hydraulic and waveform modelling, simulation, gain-scheduling LQR controller. Ac
 
 **Tools & platforms**
 - MATLAB/Simulink, LaTeX, Microsoft Office · Git, SVN, Docker · Python (scripting, tooling).
+- **Linux** — Daily driver for both work and personal development; running Arch Linux (Omarchy) as primary personal OS of choice.
 
 **Soft skills**
 - Project management, communication, problem-solving, teamwork under pressure.
@@ -123,7 +124,7 @@ See control theory and real-time graphics in action:
 
 ## About me
 
-I enjoy time with my wife, family, friends, and our cocker spaniel. I like strategy board games, rehabilitation and fitness after my handball years, and unwinding with hiking, guitar, reading, and dancing. I also keep sharp by building hobby projects—often at the intersection of control theory, C++, and real-time graphics. If that sounds like your kind of challenge, I’d be glad to connect.
+I enjoy time with my wife, family, friends, and  lovely cocker spaniel. I like strategy board games, calisthenics and rehabilitation training after my handball years, and unwinding with outdoor hiking, guitar playing, reading and dancing. I also keep sharp by building hobby projects using new vibe coding tools such as Claude Code—often at the intersection of control theory, C++, and real-time graphics. If that sounds like your kind of challenge, I’d be glad to connect.
 
 ---
 
